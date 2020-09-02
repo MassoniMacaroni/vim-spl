@@ -69,7 +69,6 @@ syntax keyword splEvalFunction contained
       \ cos
       \ cosh
       \ count
-      \ dc
       \ exact
       \ exp
       \ false
@@ -106,9 +105,6 @@ syntax keyword splEvalFunction contained
       \ now
       \ null
       \ nullif
-      \ p50
-      \ p90
-      \ p99
       \ pi
       \ pow
       \ printf
@@ -180,32 +176,36 @@ syntax keyword splStatIdentifier contained
 syntax keyword splStatFunction contained
       \ avg
       \ count
+      \ dc
       \ distinct_count
+      \ earliest
       \ estdc
       \ estdc_error
+      \ first
+      \ last
+      \ latest
+      \ list
       \ max
       \ mean
       \ medianexclusive
       \ min
       \ mode
+      \ p50
+      \ p90
+      \ p99
+      \ per_day
+      \ per_hour
+      \ per_minute
+      \ per_second
       \ percentile
       \ range
       \ stdev
       \ stdevp
       \ sum
       \ sumsq
+      \ values
       \ var
       \ varp
-      \ earliest
-      \ first
-      \ last
-      \ latest
-      \ list
-      \ values
-      \ per_day
-      \ per_hour
-      \ per_minute
-      \ per_second
 
 " stat command
 syntax match splStatCommand contained

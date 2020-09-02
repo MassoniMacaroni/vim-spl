@@ -33,6 +33,9 @@ syntax keyword splOperator contained
       \ AND
       \ NOT
       \ OR
+      \ IN
+      \ as
+
 
 syntax keyword splBadOperator contained
       \ and
@@ -59,12 +62,14 @@ syntax keyword splEvalFunction contained
       \ atan2
       \ atanh
       \ case
-      \ cidrmatch
       \ ceiling
+      \ cidrmatch
       \ coalesce
       \ commands
       \ cos
       \ cosh
+      \ count
+      \ dc
       \ exact
       \ exp
       \ false
@@ -101,6 +106,9 @@ syntax keyword splEvalFunction contained
       \ now
       \ null
       \ nullif
+      \ p50
+      \ p90
+      \ p99
       \ pi
       \ pow
       \ printf

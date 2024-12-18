@@ -35,7 +35,7 @@ syntax keyword splOperator contained
       \ OR
       \ IN
       \ as
-
+      \ AS
 
 syntax keyword splBadOperator contained
       \ and
@@ -156,10 +156,9 @@ syntax keyword splEvalOperator contained
 
 " eval command
 syntax match splEvalCommand contained
-      \ /\%(^\s*\||\s*\)\@<=\%(eval\|where\)/
-
+      \ /\v(^\s*\||\s*)@<=eval/
 " eval region
-syntax region splEval contained start=/\%(eval\|where\)\s\+/ end=/|\@=\|$/ contains=splEvalCommand,splEvalFunction,splEvalOperator,splComment
+syntax region splEval contained start=/\%(eval\)\s\+/ end=/|\@=\|$/ contains=splEvalCommand,splEvalFunction,splEvalOperator,splComment
 
 " stat operators
 syntax keyword splStatOperator contained
@@ -303,7 +302,6 @@ syntax keyword splCommand contained
       \ iconify
       \ input
       \ inputcsv
-      \ inputlookup
       \ iplocation
       \ join
       \ kmeans
@@ -395,12 +393,26 @@ syntax match splSearchCommand contained
 " search
 syntax region splSearch contained start=/\%(search\)\s\+/ end=/|\@=\|$/ contains=splSearchCommand,splSeparator,splSpecial,splOperator,splBadOperator,splIdentifier,splComment
 
+" where command
+syntax match splWhereCommand contained
+    \ /\<where\>/
+
+" where
+syntax region splWhere contained start=/\<where\>\s\+/ end=/|\@=\|$/ contains=splWhereCommand,splSeparator,splSpecial,splOperator,splBadOperator,splIdentifier,splComment
+
+syntax match splInputlookupCommand contained
+    \ /\%(^\s*\||\s*\)\@<=inputlookup/
+
+
+syntax region splInputlookup start=/\%(^\s*\||\s*\)\@<=inputlookup\s/ end=/|\@=\|$/ contains=splInputlookupCommand,splWhere,splSeparator,splSpecial,splOperator,splBadOperator,splIdentifier,splComment
+
 " implicit search
 syntax region splImplicit contained start=/\|search\s\+/ end=/|\@=\|$/ contains=splSearchCommand,splSeparator,splSpecial,splOperator,splBadOperator,splIdentifier,splComment
 
 " pipe
-syntax match splPipe nextgroup=splEval,splStat,splChart,splTop,splSearch,splCommand,splInternal skipwhite skipnl skipempty
+syntax match splPipe nextgroup=splEval,splStat,splChart,splTop,splInputlookup,splWhere,splSearch,splCommand,splInternal skipwhite skipnl skipempty
       \ /|/
+
 
 " start of line
 syntax match splStart nextgroup=splImplicit,splPipe skipwhite
@@ -447,3 +459,7 @@ highlight default link splInternal Keyword
 highlight default link splSearchCommand Keyword
 
 highlight default link splPipe Special
+
+highlight default link splWhereCommand Operator
+
+highlight default link splInputlookupCommand Keyword
